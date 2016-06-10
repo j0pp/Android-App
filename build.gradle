@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'jonb.ugh3'
 
 android {
     compileSdkVersion 23
