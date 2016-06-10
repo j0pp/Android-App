@@ -29,4 +29,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile project(':jsoup-1.9.2')
+    classpath 'com.android.tools.build:gradle:2.1.0'
 }
