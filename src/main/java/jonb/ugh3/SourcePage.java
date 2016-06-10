@@ -29,11 +29,13 @@ public class SourcePage implements Serializable{
     public static final String userAgent = "\"Mozilla/5.0 (Windows NT\" +\n" +
             "          \" 6.1; WOW64) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.120 Safari/535.2\"";
 
-    public static ArrayList<Double> gradeNumber = new ArrayList<>();
-    public static ArrayList<String> gradeLetter = new ArrayList<>();
+    private static ArrayList<Double> gradeNumber = new ArrayList<>();
+    private static ArrayList<String> gradeLetter = new ArrayList<>();
 
-    public static ArrayList<String> teacherList = new ArrayList<>();
-    public static ArrayList<String> classList = new ArrayList<>();
+    private static ArrayList<String> teacherList = new ArrayList<>();
+    private static ArrayList<String> classList = new ArrayList<>();
+
+    private static ArrayList<Course> coursesList = new ArrayList<>();
 
     public static boolean validPage;
     public static boolean pageLoaded;
@@ -133,6 +135,11 @@ public class SourcePage implements Serializable{
                         }
                     }
                     //Get persons name
+                    for(int i = 0; i < classList.size(); i++) {
+                        Course c = new Course(teacherList.get(i), classList.get(i), gradeNumber.get(i), gradeLetter.get(i));
+                        coursesList.add(c);
+                    }
+
                     pageLoaded = true;
 
 
@@ -172,5 +179,9 @@ public class SourcePage implements Serializable{
 
     public String getNAME() {
         return NAME;
+    }
+
+    public ArrayList<Course> getCoursesList() {
+        return coursesList;
     }
 }

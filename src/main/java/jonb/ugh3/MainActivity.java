@@ -51,7 +51,6 @@ public class MainActivity extends Activity {
 
                         if(sp.pageLoaded) {
                             if(sp.isConnected()) {
-                                Toast.makeText(getApplicationContext(), sp.getGradeLetters().get(0), Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(MainActivity.this, gradepage.class));
                             }else {
                                 Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
