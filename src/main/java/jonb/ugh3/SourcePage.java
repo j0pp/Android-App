@@ -19,8 +19,6 @@ import java.util.HashMap;
  */
 public class SourcePage implements Serializable{
 
-    private String USERNAME;
-    private String PASSWORD;
     private String NAME;
 
     private Document mainDoc;
@@ -35,20 +33,26 @@ public class SourcePage implements Serializable{
     public static ArrayList<String> gradeLetter = new ArrayList<>();
 
     public static ArrayList<String> teacherList = new ArrayList<>();
+    public static ArrayList<String> classList = new ArrayList<>();
 
     public static boolean validPage;
     public static boolean pageLoaded;
 
-    public SourcePage(String USERNAME, String PASSWORD) {
-        this.USERNAME = USERNAME;
-        this.PASSWORD = PASSWORD;
+    private static SourcePage sourcePage = new SourcePage();
+
+    private SourcePage() {}
+
+    public static SourcePage getInstance() {
+        return sourcePage;
+    }
+
+    protected void login(String USERNAME, String PASSWORD) {
+
+        final String user = USERNAME;
+        final String pass = PASSWORD;
 
         validPage = false;
         pageLoaded = false;
-        login();
-    }
-
-    private void login() {
 
         Thread th = new Thread() {
 
@@ -83,9 +87,9 @@ public class SourcePage implements Serializable{
                     formData.put("dbpw", dbpw);
                     formData.put("serviceName", serviceName);
                     formData.put("credentialType", credentialType);
-                    formData.put("Account", USERNAME);
-                    formData.put("ldappassword", PASSWORD);
-                    formData.put("pw", PASSWORD);
+                    formData.put("Account", user);
+                    formData.put("ldappassword", pass);
+                    formData.put("pw", pass);
 
 
                     Connection.Response homePage = Jsoup.connect(POST_URL)
@@ -121,8 +125,9 @@ public class SourcePage implements Serializable{
                         for (int i = 1; i < teachers.size(); i += 2)
                         {
 
-                            String fullText = teachers.get(i).text().replaceAll("//s+", ".");
-                            teacherList.add(fullText);
+                            String[] fullText = teachers.get(i).text().split("\\s{3,}+");
+                            classList.add(fullText[0]);
+                            teacherList.add(fullText[1]);
 
 
                         }
@@ -157,4 +162,15 @@ public class SourcePage implements Serializable{
         return gradeNumber;
     }
 
+    public ArrayList<String> getTeacherList() {
+        return teacherList;
+    }
+
+    public static ArrayList<String> getClassList() {
+        return classList;
+    }
+
+    public String getNAME() {
+        return NAME;
+    }
 }

@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textColor="#4c4a4a" />
 
     <TextView
@@ -55,6 +55,6 @@
         android:layout_alignBottom="@+id/gradeTextView"
         android:layout_alignLeft="@+id/gradeTextView"
         android:layout_alignStart="@+id/gradeTextView"
-        android:inputType="numberPassword|numberDecimal" />
+        android:inputType="numberDecimal" />
 
 </RelativeLayout>

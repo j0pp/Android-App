@@ -14,16 +14,19 @@ public class gradepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gradepage);
 
-        Intent intent = getIntent();
-        SourcePage sp = (SourcePage) intent.getSerializableExtra("sp");
+        SourcePage sp = SourcePage.getInstance();
 
         gradeText = (TextView) (findViewById(R.id.gradeTextView));
         gradeValText = (TextView) (findViewById(R.id.gradeValTextView));
         teacherText = (TextView) (findViewById(R.id.teacherTextView));
         classText = (TextView) (findViewById(R.id.classTextView));
 
+        setTitle(sp.getNAME());
+
         gradeText.setText(sp.getGradeLetters().get(0));
-        gradeValText.setText(sp.getGradeNumber().get(0) + "");
+        gradeValText.setText(sp.getGradeNumber().get(0).toString() + "%");
+        teacherText.setText(sp.getTeacherList().get(0));
+        classText.setText(sp.getClassList().get(0));
 
 
 
